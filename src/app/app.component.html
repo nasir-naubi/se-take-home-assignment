@@ -1,0 +1,41 @@
+  <div class="userDisplay">
+    <div class="headerTitle">
+      <h1>McDonald BOT Ordering System</h1>
+    </div>
+    <div class="adminDisplay">
+      <h2>Admin Panel</h2>
+      <button class="btn btn-primary" (click)="addBot()">+ Bot</button>
+      &nbsp;
+      <button class="btn btn-danger" (click)="deleteBot()" [disabled]="botList.length < 1">- Bot</button>
+      <br><br>
+      <div *ngFor="let bot of botList">
+        <p>Bot {{bot!.botId}}: {{bot!.isWorking ? 'Working' : 'Idle'}}</p>
+      </div>
+    </div>
+    <div class="customerDisplay">
+      <h2>Customer Panel</h2>
+      <button class="btn btn-primary" (click)="addNewOrder(false)">Add Order</button>
+      &nbsp;
+      <button class="btn btn-warning" (click)="addNewOrder(true)">Add VIP Order</button>
+    </div>
+  </div>
+  
+  <div class="orderDisplay">
+    <div class="progressTitle">
+      <h1>ORDER PROGRESS</h1>
+    </div>
+    <div class="pendingOrder">
+      <h2>PENDING</h2>
+      <div *ngFor="let orderItem of orderList">
+        <p *ngIf="!orderItem.completed">Order {{orderItem!.orderId}} <span *ngIf="orderItem.vipFlag">(VIP)</span>
+        <span *ngIf="orderItem.assignedBotId != 0" class="inProgress">(In progress by Bot {{orderItem.assignedBotId}})</span></p>
+      </div>
+    </div>
+    <div class="completedOrder">
+      <h2>COMPLETED</h2>
+      <div *ngFor="let orderItem of orderList">
+        <p *ngIf="orderItem.completed">Order {{orderItem!.orderId}} <span *ngIf="orderItem.vipFlag">(VIP)</span></p>
+      </div>
+    </div>
+    <br><br>
+  </div>
