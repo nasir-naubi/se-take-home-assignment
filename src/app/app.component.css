@@ -1,0 +1,56 @@
+.headerTitle {
+    background-color: #546E7A;
+    color: #FAFAFA;
+    text-align: center;
+    padding: 5px;
+}
+
+.progressTitle {
+    background-color: #546E7A;
+    color: #FAFAFA;
+    text-align: center;
+    padding: 5px;
+}
+
+.orderDisplay {
+    background-color: #F5F5F5;
+    width: 100%;
+    text-align: center;
+    float: left;
+    border: 0.5px solid #424242;
+}
+
+.userDisplay {
+    background-color: #F5F5F5;
+}
+
+.adminDisplay {
+    width: 50%;
+    float: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    border-right: 0.5px solid #424242;
+}
+
+.customerDisplay {
+    width: 50%;
+    float: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.pendingOrder {
+    width: 50%;float: left;
+    border-right: 0.5px solid #424242;
+}
+
+.completedOrder {
+    width: 50%;float: left;
+    border-left: 0.5px solid #424242;
+}
+
+.inProgress {
+    font-weight: bold;
+}
