@@ -28,7 +28,7 @@
       <h2>PENDING</h2>
       <div *ngFor="let orderItem of orderList">
         <p *ngIf="!orderItem.completed">Order {{orderItem!.orderId}} <span *ngIf="orderItem.vipFlag">(VIP)</span>
-        <span *ngIf="orderItem.assignedBotId != 0" class="inProgress">(In progress by Bot {{orderItem.assignedBotId}})</span></p>
+        <span *ngIf="orderItem.assignedBotId != 0" class="inProgress">(In progress by Bot {{orderItem.assignedBotId}}) ({{orderItem.timer}}) </span></p>
       </div>
     </div>
     <div class="completedOrder">

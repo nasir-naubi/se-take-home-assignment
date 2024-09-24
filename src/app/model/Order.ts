@@ -3,4 +3,6 @@ export interface Order{
     assignedBotId: number; 
     vipFlag: boolean;
     completed: boolean;
+    timer: number;
+    timerId: NodeJS.Timer | null;
 }
