@@ -8,7 +8,7 @@ import { Bot } from './model/Bot';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    
+  title = 'mcdonalbot';
   orderIdIndex = 0;
   botIdIndex = 0;
   orderList: Order[] = [];
@@ -22,7 +22,9 @@ addNewOrder(isVip: boolean) {
     orderId: this.orderIdIndex,
     assignedBotId: 0,
     vipFlag: isVip,
-    completed: false
+    completed: false,
+    timer: 10,
+    timerId: null
   };
 
   this.orderList.push(newOrder);
@@ -57,7 +59,16 @@ assignOrder(order: Order,bot: Bot) {
   order.assignedBotId = bot.botId;
   bot.isWorking = true;
   
+  let timer = 10;
   const timeoutId = setTimeout(() => {this.completeOrder(order, bot)}, this.botWorkTime);
+  const timerId = setInterval(function() {
+    order.timer = timer--;
+    if (timer == 0) {
+      clearInterval(timerId);
+    }
+  }, 1000);
+  
+  order.timerId = timerId;
   bot.taskId = timeoutId;
   console.log('order ' + order.orderId + ' assigned to Bot ' + bot.botId)
 }
@@ -102,7 +113,14 @@ completeOrder(order: Order, bot: Bot) {
       inProgressOrder.assignedBotId = 0;
       inProgressOrder.completed = false;
       if(bot.taskId != null) {
-        clearTimeout(bot.taskId)
+        clearTimeout(bot.taskId);
+        
+        // should handle null
+        if(inProgressOrder.timerId != null){
+          clearInterval(inProgressOrder.timerId);
+        }
+        
+        this.checkPendingOrder();
       }
     }    
   }
